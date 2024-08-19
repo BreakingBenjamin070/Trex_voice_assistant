@@ -224,7 +224,7 @@ def translate(query):
 
 # Погода
 def get_weather(query):
-    weather_api_key = "b3d5e66e848eec0a472bba4bc715f686"    # API-ключ
+    weather_api_key = "your_api_key"    # API-ключ
     config_dict = get_default_config()  # Сброс настроек
     config_dict['language'] = 'ru'  # Установка языка
     try:
@@ -281,15 +281,15 @@ def send_email():
     try:
         server = smtplib.SMTP_SSL('smtp.mail.ru', 465)
         server.ehlo()
-        server.login('yuliya23082000@mail.ru', 'Qh8YY8ieAr7FTL0vmCAF')
+        server.login('email_from@mail.ru', 'password')
         msg = MIMEMultipart()
-        msg["From"] = "yuliya23082000@mail.ru"
+        msg["From"] = "email_from@mail.ru"
         speak(trex, "Скажите получателя письма")
         query = record()
         if ("руководитель" in query):
-            msg["To"] = "miheichfade@gmail.com"
+            msg["To"] = "email_to1@mail.ru"
         elif ("мама" in query):
-            msg["To"] = ""
+            msg["To"] = "email_to2@mail.ru"
         print(f"Получатель письма: {msg["To"]}")
         speak(trex, "Скажите заголовок письма")
         msg["Subject"] = record()
@@ -308,7 +308,7 @@ def send_email():
 
 # Просмотр баланса Selectel
 def billing_selectel():
-    apikey_selectel = "YSfLBNxqPIlWnOqA9vrB9GOCo_208078"
+    apikey_selectel = "your_api_key"
     headers = {'X-Token': apikey_selectel}
     response = requests.get('https://api.selectel.ru/v3/balances', headers=headers)
     if response.status_code == 200:
